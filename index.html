@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Horse AB — Software studio in Göteborg</title>
+<meta name="description" content="Code Horse AB is an independent software studio in Göteborg, Sweden. We build custom software and our own products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Familjen+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#071126;
+    --ink-2:#0d1b3d;
+    --blue:#2F66F3;
+    --blue-deep:#1f4fd6;
+    --paper:#F5F7FA;
+    --paper-2:#EEF1F6;
+    --white:#FFFFFF;
+    --line:rgba(7,17,38,.10);
+    --line-2:rgba(7,17,38,.16);
+    --muted:rgba(7,17,38,.58);
+    --muted-light:rgba(255,255,255,.62);
+    --r:18px;
+    --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Familjen Grotesk",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* dot-grid + glow atmosphere */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:radial-gradient(circle at 1px 1px, rgba(7,17,38,.055) 1px, transparent 0);
+    background-size:26px 26px;
+    mask-image:linear-gradient(to bottom, #000, transparent 70%);
+    -webkit-mask-image:linear-gradient(to bottom, #000, transparent 70%);
+  }
+  body::after{
+    content:"";position:fixed;top:-15%;right:-10%;width:55vw;height:55vw;z-index:0;pointer-events:none;
+    background:radial-gradient(circle, rgba(47,102,243,.16), transparent 62%);
+    filter:blur(10px);
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;line-height:1.03;letter-spacing:-.025em;font-weight:700}
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:"JetBrains Mono",monospace}
+
+  /* horse mark */
+  .mark{display:block}
+  .mark g{stroke:currentColor}
+
+  /* ---------- NAV ---------- */
+  header{position:sticky;top:0;z-index:50;transition:all .3s ease}
+  header.scrolled{background:rgba(245,247,250,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--ink)}
+  .brand .mark{width:34px;height:34px;flex:none}
+  .brand .name{font-family:"Bricolage Grotesque";font-weight:700;font-size:19px;letter-spacing:-.02em}
+  .navlinks{display:flex;align-items:center;gap:34px}
+  .navlinks a.nl{font-size:15px;color:var(--muted);font-weight:500;transition:color .2s;position:relative}
+  .navlinks a.nl:hover{color:var(--ink)}
+  .navlinks a.nl::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--blue);transition:width .25s}
+  .navlinks a.nl:hover::after{width:100%}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Familjen Grotesk";font-weight:600;font-size:15px;padding:11px 20px;border-radius:100px;transition:transform .2s, box-shadow .2s, background .2s;cursor:pointer;border:0}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 22px -8px rgba(47,102,243,.6)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(47,102,243,.7);background:var(--blue-deep)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-light{background:#fff;color:var(--ink)}
+  .btn-light:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(0,0,0,.4)}
+  .menu-toggle{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+  .menu-toggle span{width:24px;height:2px;background:var(--ink);transition:.3s;border-radius:2px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:74px 0 96px}
+  .hero .ghost-mark{position:absolute;top:-30px;right:-40px;width:min(560px,52vw);color:var(--ink);opacity:.045;z-index:0;pointer-events:none}
+  .hero-inner{position:relative;z-index:1;max-width:880px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-deep);background:rgba(47,102,243,.09);border:1px solid rgba(47,102,243,.18);padding:7px 14px;border-radius:100px;font-weight:500}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 0 rgba(47,102,243,.5);animation:pulse 2.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,102,243,.45)}70%{box-shadow:0 0 0 9px rgba(47,102,243,0)}100%{box-shadow:0 0 0 0 rgba(47,102,243,0)}}
+  h1.title{font-size:clamp(44px,7.4vw,90px);margin:26px 0 0;font-weight:800}
+  h1.title .accent{color:var(--blue);position:relative}
+  .hero p.lede{font-size:clamp(18px,2.2vw,22px);color:var(--muted);max-width:620px;margin:26px 0 0;line-height:1.55}
+  .hero-cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+  .hero-stats{display:flex;gap:46px;margin-top:64px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px}
+  .stat .num{font-family:"Bricolage Grotesque";font-size:34px;font-weight:700;letter-spacing:-.03em}
+  .stat .lab{font-size:13.5px;color:var(--muted);margin-top:2px}
+  .stat .num .b{color:var(--blue)}
+
+  /* section heading */
+  .sec{padding:96px 0;position:relative;z-index:1}
+  .sec-head{max-width:680px;margin-bottom:52px}
+  .kicker{font-family:"JetBrains Mono";font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--blue)}
+  .sec-head h2{font-size:clamp(32px,4.4vw,52px);margin:18px 0 0}
+  .sec-head p{color:var(--muted);font-size:18px;margin-top:18px;max-width:560px}
+
+  /* services grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:34px;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-5px);box-shadow:0 24px 50px -28px rgba(7,17,38,.28);border-color:var(--line-2)}
+  .card .ic{width:46px;height:46px;border-radius:12px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--ink);margin-bottom:22px;transition:.3s}
+  .card:hover .ic{background:var(--blue);color:#fff}
+  .card .ic svg{width:23px;height:23px}
+  .card h3{font-size:21px;font-weight:600;letter-spacing:-.02em}
+  .card p{color:var(--muted);font-size:15.5px;margin-top:10px}
+  .card .num-tag{position:absolute;top:24px;right:28px;font-family:"JetBrains Mono";font-size:13px;color:var(--line-2)}
+
+  /* products */
+  .products{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .prod{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:38px;display:flex;flex-direction:column;min-height:300px;transition:transform .3s, box-shadow .3s;position:relative;overflow:hidden}
+  .prod::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(47,102,243,.05),transparent 55%);opacity:0;transition:.4s}
+  .prod:hover{transform:translateY(-5px);box-shadow:0 24px 55px -28px rgba(7,17,38,.3)}
+  .prod:hover::before{opacity:1}
+  .prod .pnum{font-family:"JetBrains Mono";font-size:14px;color:var(--blue);letter-spacing:.05em}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono";font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-deep);background:rgba(47,102,243,.1);padding:5px 11px;border-radius:100px;align-self:flex-start;margin-top:18px}
+  .badge .d{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2.6s infinite}
+  .prod h3{font-size:27px;font-weight:700;margin-top:22px}
+  .prod p{color:var(--muted);font-size:16px;margin-top:14px;flex-grow:1}
+  .prod .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+  .tag{font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:4px 10px;font-family:"JetBrains Mono"}
+
+  /* about */
+  .about{position:relative;z-index:1}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .about-grid h2{font-size:clamp(30px,4vw,46px)}
+  .about-text p{color:var(--muted);font-size:17.5px;margin-top:20px;line-height:1.7}
+  .about-text p strong{color:var(--ink);font-weight:600}
+  .feature-list{margin-top:30px;display:flex;flex-direction:column;gap:16px}
+  .feature-list .fi{display:flex;gap:14px;align-items:flex-start}
+  .feature-list .fi .tick{width:24px;height:24px;border-radius:50%;background:var(--blue);flex:none;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .feature-list .fi .tick svg{width:13px;height:13px;color:#fff}
+  .feature-list .fi span{font-size:16px;font-weight:500}
+  .about-card{background:var(--ink);border-radius:24px;padding:46px;color:#fff;position:relative;overflow:hidden}
+  .about-card .bigmark{position:absolute;right:-50px;bottom:-50px;width:280px;color:#fff;opacity:.07}
+  .about-card .loc{font-family:"JetBrains Mono";font-size:13px;color:var(--muted-light);letter-spacing:.1em;text-transform:uppercase}
+  .about-card .city{font-family:"Bricolage Grotesque";font-size:42px;font-weight:700;margin-top:10px;letter-spacing:-.03em}
+  .about-card .sub{color:var(--muted-light);margin-top:14px;font-size:15.5px;max-width:300px;position:relative}
+  .about-card .mini{display:flex;gap:40px;margin-top:40px;position:relative}
+  .about-card .mini .m .n{font-family:"Bricolage Grotesque";font-size:30px;font-weight:700;color:var(--blue)}
+  .about-card .mini .m .t{font-size:13px;color:var(--muted-light);margin-top:2px}
+
+  /* contact band */
+  .contact{background:var(--ink);border-radius:30px;padding:clamp(48px,7vw,90px);text-align:center;position:relative;overflow:hidden;color:#fff;margin-bottom:40px}
+  .contact .glow{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:70%;height:120%;background:radial-gradient(circle,rgba(47,102,243,.35),transparent 60%);pointer-events:none}
+  .contact .mark{width:54px;height:54px;color:#fff;margin:0 auto 26px;position:relative}
+  .contact h2{font-size:clamp(32px,5vw,58px);position:relative}
+  .contact h2 .accent{color:var(--blue)}
+  .contact p{color:var(--muted-light);font-size:18px;margin:20px auto 0;max-width:460px;position:relative}
+  .contact .cbtns{display:flex;gap:14px;justify-content:center;margin-top:36px;flex-wrap:wrap;position:relative}
+
+  /* footer */
+  footer{padding:56px 0 50px;position:relative;z-index:1}
+  .foot{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:40px}
+  .foot .brand .name{font-size:18px}
+  .foot .fcol-desc{max-width:280px;color:var(--muted);font-size:14.5px;margin-top:16px}
+  .foot-links{display:flex;gap:60px;flex-wrap:wrap}
+  .foot-links .fc h4{font-family:"JetBrains Mono";font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:500;margin-bottom:14px}
+  .foot-links .fc a{display:block;font-size:15px;color:var(--ink);margin-bottom:9px;transition:color .2s}
+  .foot-links .fc a:hover{color:var(--blue)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px}
+  .foot-bottom span{font-size:13.5px;color:var(--muted);font-family:"JetBrains Mono"}
+
+  /* team */
+  .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .member{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:30px;display:flex;gap:26px;align-items:center;transition:transform .3s, box-shadow .3s, border-color .3s}
+  .member:hover{transform:translateY(-5px);box-shadow:0 24px 50px -28px rgba(7,17,38,.28);border-color:var(--line-2)}
+  .portrait{position:relative;width:128px;height:128px;flex:none;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,var(--ink),var(--ink-2));display:flex;align-items:center;justify-content:center}
+  .portrait::after{content:"";position:absolute;inset:0;border-radius:20px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:box-shadow .3s}
+  .member:hover .portrait::after{box-shadow:inset 0 0 0 2px var(--blue)}
+  .portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.02);transition:filter .4s ease, transform .5s ease}
+  .member:hover .portrait img{filter:grayscale(0%);transform:scale(1.04)}
+  .portrait .initials{font-family:"Bricolage Grotesque";font-weight:700;font-size:38px;color:#fff;letter-spacing:-.02em}
+  .portrait .initials .ac{color:var(--blue)}
+  .m-info .m-name{font-family:"Bricolage Grotesque";font-size:23px;font-weight:700;letter-spacing:-.02em}
+  .m-info .m-role{font-family:"JetBrains Mono";font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-deep);margin-top:6px}
+  .m-info .m-bio{color:var(--muted);font-size:15px;margin-top:12px;line-height:1.6}
+  .m-info .m-links{display:flex;gap:14px;margin-top:16px}
+  .m-info .m-links a{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.25s}
+  .m-info .m-links a:hover{color:#fff;background:var(--blue);border-color:var(--blue);transform:translateY(-2px)}
+  .m-info .m-links a svg{width:16px;height:16px}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .hero .eyebrow,.hero h1,.hero .lede,.hero-cta,.hero-stats{opacity:0;transform:translateY(24px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1{animation-delay:.08s}
+  .hero .lede{animation-delay:.18s}
+  .hero-cta{animation-delay:.28s}
+  .hero-stats{animation-delay:.4s}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* responsive */
+  @media(max-width:860px){
+    .navlinks{position:fixed;inset:74px 0 auto 0;background:rgba(245,247,250,.98);backdrop-filter:blur(16px);flex-direction:column;gap:0;padding:14px 28px 26px;border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .35s ease;align-items:stretch}
+    .navlinks.open{transform:none}
+    .navlinks a.nl{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line)}
+    .navlinks .btn{margin-top:16px;justify-content:center}
+    .menu-toggle{display:flex}
+    .menu-toggle.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-toggle.x span:nth-child(2){opacity:0}
+    .menu-toggle.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .grid,.products,.about-grid{grid-template-columns:1fr}
+    .team-grid{grid-template-columns:1fr}
+    .member{flex-direction:column;text-align:center;align-items:center;gap:18px}
+    .m-info .m-links{justify-content:center}
+    .about-grid{gap:36px}
+    .hero-stats{gap:30px}
+    .sec{padding:70px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- reusable horse mark template kept inline per use -->
+
+<header id="header">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top" aria-label="Code Horse home">
+        <svg class="mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
+            <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
+          </g>
+          <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+        </svg>
+        <span class="name">Code Horse</span>
+      </a>
+      <div class="navlinks" id="navlinks">
+        <a class="nl" href="#services">Services</a>
+        <a class="nl" href="#products">Products</a>
+        <a class="nl" href="#team">Team</a>
+        <a class="nl" href="#about">About</a>
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <svg class="ghost-mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
+          <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
+        </g>
+      </svg>
+      <div class="hero-inner">
+        <span class="eyebrow"><span class="dot"></span>Independent software studio · Göteborg</span>
+        <h1 class="title">We build software<br>worth <span class="accent">riding on.</span></h1>
+        <p class="lede">Code Horse AB is a small, focused engineering studio in Gothenburg, Sweden. We craft custom software for clients — and develop our own products along the way.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact">Start a project →</a>
+          <a class="btn btn-ghost" href="#products">See our products</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="num">02</div><div class="lab">People, fully hands-on</div></div>
+          <div class="stat"><div class="num">02</div><div class="lab">Products in development</div></div>
+          <div class="stat"><div class="num">Göteborg<span class="b">.</span></div><div class="lab">Based in Sweden</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="sec" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">What we do</span>
+        <h2>IT services, delivered end to end.</h2>
+        <p>From a first sketch to a shipped product, we handle the full stack — design, build, integrate and maintain.</p>
+      </div>
+      <div class="grid">
+        <div class="card reveal">
+          <span class="num-tag">01</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3>Custom software development</h3>
+          <p>Tailored web and backend systems built around your business — clean architecture, maintainable code, no shortcuts.</p>
+        </div>
+        <div class="card reveal">
+          <span class="num-tag">02</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+          <h3>Web &amp; mobile apps</h3>
+          <p>Fast, modern interfaces with Next.js and friends, backed by robust Spring Boot &amp; API layers your users won't outgrow.</p>
+        </div>
+        <div class="card reveal">
+          <span class="num-tag">03</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+          <h3>System integration &amp; APIs</h3>
+          <p>Connecting the tools you already use — payments, databases, third-party services — into one coherent system.</p>
+        </div>
+        <div class="card reveal">
+          <span class="num-tag">04</span>
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6M7 12H1"/></svg></div>
+          <h3>Technical consulting</h3>
+          <p>A second pair of senior eyes on architecture, performance and product decisions — practical advice, not slideware.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="sec" id="products" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">Built in-house</span>
+        <h2>Our own products.</h2>
+        <p>We don't just build for others. These are the products we're actively developing under the Code Horse name.</p>
+      </div>
+      <div class="products">
+        <div class="prod reveal">
+          <span class="pnum">/ 01</span>
+          <span class="badge"><span class="d"></span>In development</span>
+          <h3>Swedish Driving License Theory App</h3>
+          <p>A modern study companion for the Swedish körkort theory exam — bilingual question banks, smart practice and an AI study assistant that explains the why, not just the answer.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Spring Boot</span><span class="tag">AI assistant</span><span class="tag">Bilingual</span></div>
+        </div>
+        <div class="prod reveal">
+          <span class="pnum">/ 02</span>
+          <span class="badge"><span class="d"></span>In development</span>
+          <h3>Restaurant Management System</h3>
+          <p>An all-in-one platform for running a restaurant — orders, menus, staff and finances in one clean dashboard, designed from real day-to-day operating experience.</p>
+          <div class="tags"><span class="tag">Web platform</span><span class="tag">Operations</span><span class="tag">Dashboard</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="kicker">Who we are</span>
+          <h2>A small studio<br>with skin in the game.</h2>
+          <p>Code Horse AB is a <strong>two-person engineering studio</strong> based in Gothenburg. Small by design — every line of code and every client conversation goes through the people who actually build the thing.</p>
+          <p>Because we ship our own products, we feel the same pressures our clients do. That keeps us honest, pragmatic and genuinely invested in what works.</p>
+          <div class="feature-list">
+            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Senior engineers on every project — no hand-offs</span></div>
+            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>We build products, so we think like product owners</span></div>
+            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Direct, no-overhead communication from day one</span></div>
+          </div>
+        </div>
+        <div class="about-card reveal">
+          <svg class="bigmark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
+              <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
+            </g>
+            <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+          </svg>
+          <div class="loc">Home base</div>
+          <div class="city">Göteborg, SE</div>
+          <p class="sub">On the Swedish west coast — building software for clients near and far.</p>
+          <div class="mini">
+            <div class="m"><div class="n">02</div><div class="t">Engineers</div></div>
+            <div class="m"><div class="n">100%</div><div class="t">Hands-on</div></div>
+            <div class="m"><div class="n">2</div><div class="t">Own products</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="sec" id="team" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">The people</span>
+        <h2>Two people. Both build.</h2>
+        <p>No account managers, no middle layer — you work directly with the two engineers behind every line of Code Horse.</p>
+      </div>
+      <div class="team-grid">
+
+        <!-- ===== MEMBER 1 — edit name/role/bio below. To add a photo: drop "person1.jpg" next to index.html ===== -->
+        <div class="member reveal">
+          <div class="portrait">
+            <img src="person1.jpg" alt="Portrait" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="initials" style="display:none"><!-- fallback initials -->M<span class="ac">A</span></span>
+          </div>
+          <div class="m-info">
+            <div class="m-name">Your Name</div>
+            <div class="m-role">Co-founder · Engineer</div>
+            <p class="m-bio">Full-stack engineer focused on backend architecture and product. Leads development of the körkort theory app.</p>
+            <div class="m-links">
+              <a href="mailto:hello@codehorse.se" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></a>
+              <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4 0 4.77 2.65 4.77 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.37-3.9-2.37 0-2.73 1.85-2.73 3.77V24h-4V8z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== MEMBER 2 — edit name/role/bio below. To add a photo: drop "person2.jpg" next to index.html ===== -->
+        <div class="member reveal">
+          <div class="portrait">
+            <img src="person2.jpg" alt="Portrait" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="initials" style="display:none"><!-- fallback initials -->C<span class="ac">H</span></span>
+          </div>
+          <div class="m-info">
+            <div class="m-name">Co-developer's Name</div>
+            <div class="m-role">Co-founder · Engineer</div>
+            <p class="m-bio">Engineer with a focus on frontend and product experience. Drives the design and build of the restaurant management system.</p>
+            <div class="m-links">
+              <a href="mailto:hello@codehorse.se" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></a>
+              <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4 0 4.77 2.65 4.77 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.37-3.9-2.37 0-2.73 1.85-2.73 3.77V24h-4V8z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec" id="contact" style="padding-bottom:40px">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div class="glow"></div>
+        <svg class="mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
+            <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
+          </g>
+          <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+        </svg>
+        <h2>Let's build<br>something <span class="accent">good.</span></h2>
+        <p>Have a project in mind, or want to know more about our products? We'd love to hear from you.</p>
+        <div class="cbtns">
+          <a class="btn btn-primary" href="mailto:hello@codehorse.se">hello@codehorse.se</a>
+          <a class="btn btn-light" href="mailto:hello@codehorse.se">Send a message →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
+              <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
+            </g>
+            <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+          </svg>
+          <span class="name">Code Horse</span>
+        </a>
+        <p class="fcol-desc">An independent software studio in Gothenburg, Sweden — building custom software and our own products.</p>
+      </div>
+      <div class="foot-links">
+        <div class="fc">
+          <h4>Studio</h4>
+          <a href="#services">Services</a>
+          <a href="#products">Products</a>
+          <a href="#team">Team</a>
+          <a href="#about">About</a>
+        </div>
+        <div class="fc">
+          <h4>Products</h4>
+          <a href="#products">Körkort Theory App</a>
+          <a href="#products">Restaurant System</a>
+        </div>
+        <div class="fc">
+          <h4>Contact</h4>
+          <a href="mailto:hello@codehorse.se">hello@codehorse.se</a>
+          <a href="#">Göteborg, Sweden</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Code Horse AB</span>
+      <span>Made in Göteborg ◆</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // sticky header style
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile menu
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+    toggle.classList.toggle('x');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open'); toggle.classList.remove('x');
+  }));
+
+  // scroll reveal with stagger inside grids
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i) => {
+    const parent = el.parentElement;
+    const siblings = [...parent.querySelectorAll(':scope > .reveal')];
+    el.style.transitionDelay = (siblings.indexOf(el) * 0.08) + 's';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
