@@ -79,6 +79,12 @@
   .menu-toggle{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
   .menu-toggle span{width:24px;height:2px;background:var(--ink);transition:.3s;border-radius:2px}
 
+  /* language toggle */
+  .lang-toggle{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line-2);border-radius:100px;padding:3px;background:rgba(255,255,255,.55)}
+  .lang-btn{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:500;letter-spacing:.04em;color:var(--muted);background:transparent;border:0;padding:5px 11px;border-radius:100px;cursor:pointer;transition:color .2s, background .2s}
+  .lang-btn:hover{color:var(--ink)}
+  .lang-btn.active{background:var(--blue);color:#fff}
+
   /* ---------- HERO ---------- */
   .hero{position:relative;padding:74px 0 96px}
   .hero .ghost-mark{position:absolute;top:-30px;right:-40px;width:min(560px,52vw);color:var(--ink);opacity:.045;z-index:0;pointer-events:none}
@@ -207,6 +213,7 @@
     .navlinks.open{transform:none}
     .navlinks a.nl{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line)}
     .navlinks .btn{margin-top:16px;justify-content:center}
+    .navlinks .lang-toggle{align-self:flex-start;margin-top:16px}
     .menu-toggle{display:flex}
     .menu-toggle.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .menu-toggle.x span:nth-child(2){opacity:0}
@@ -237,11 +244,15 @@
         <span class="name">Code Horse</span>
       </a>
       <div class="navlinks" id="navlinks">
-        <a class="nl" href="#services">Services</a>
-        <a class="nl" href="#products">Products</a>
-        <a class="nl" href="#team">Team</a>
-        <a class="nl" href="#about">About</a>
-        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="nl" href="#services" data-i18n="nav.services">Services</a>
+        <a class="nl" href="#products" data-i18n="nav.products">Products</a>
+        <a class="nl" href="#team" data-i18n="nav.team">Team</a>
+        <a class="nl" href="#about" data-i18n="nav.about">About</a>
+        <div class="lang-toggle" role="group" aria-label="Language / Språk">
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="lang-btn" data-lang="sv" aria-pressed="false">SV</button>
+        </div>
+        <a class="btn btn-primary" href="#contact" data-i18n="nav.getintouch">Get in touch</a>
       </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -262,17 +273,17 @@
         </g>
       </svg>
       <div class="hero-inner">
-        <span class="eyebrow"><span class="dot"></span>Independent software studio · Göteborg</span>
-        <h1 class="title">We build software<br>worth <span class="accent">riding on.</span></h1>
-        <p class="lede">Code Horse AB is a small, focused engineering studio in Gothenburg, Sweden. We craft custom software for clients — and develop our own products along the way.</p>
+        <span class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Independent software studio · Göteborg</span></span>
+        <h1 class="title" data-i18n="hero.title">We build software<br>worth <span class="accent">riding on.</span></h1>
+        <p class="lede" data-i18n="hero.lede">Code Horse AB is a small, focused engineering studio in Gothenburg, Sweden. We craft custom software for clients — and develop our own products along the way.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#contact">Start a project →</a>
-          <a class="btn btn-ghost" href="#products">See our products</a>
+          <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Start a project →</a>
+          <a class="btn btn-ghost" href="#products" data-i18n="hero.cta2">See our products</a>
         </div>
         <div class="hero-stats">
-          <div class="stat"><div class="num">02</div><div class="lab">People, fully hands-on</div></div>
-          <div class="stat"><div class="num">02</div><div class="lab">Products in development</div></div>
-          <div class="stat"><div class="num">Göteborg<span class="b">.</span></div><div class="lab">Based in Sweden</div></div>
+          <div class="stat"><div class="num">02</div><div class="lab" data-i18n="hero.stat1">People, fully hands-on</div></div>
+          <div class="stat"><div class="num">02</div><div class="lab" data-i18n="hero.stat2">Products in development</div></div>
+          <div class="stat"><div class="num">Göteborg<span class="b">.</span></div><div class="lab" data-i18n="hero.stat3">Based in Sweden</div></div>
         </div>
       </div>
     </div>
@@ -282,34 +293,34 @@
   <section class="sec" id="services">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="kicker">What we do</span>
-        <h2>IT services, delivered end to end.</h2>
-        <p>From a first sketch to a shipped product, we handle the full stack — design, build, integrate and maintain.</p>
+        <span class="kicker" data-i18n="services.kicker">What we do</span>
+        <h2 data-i18n="services.h2">IT services, delivered end to end.</h2>
+        <p data-i18n="services.p">From a first sketch to a shipped product, we handle the full stack — design, build, integrate and maintain.</p>
       </div>
       <div class="grid">
         <div class="card reveal">
           <span class="num-tag">01</span>
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <h3>Custom software development</h3>
-          <p>Tailored web and backend systems built around your business — clean architecture, maintainable code, no shortcuts.</p>
+          <h3 data-i18n="services.c1h">Custom software development</h3>
+          <p data-i18n="services.c1p">Tailored web and backend systems built around your business — clean architecture, maintainable code, no shortcuts.</p>
         </div>
         <div class="card reveal">
           <span class="num-tag">02</span>
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
-          <h3>Web &amp; mobile apps</h3>
-          <p>Fast, modern interfaces with Next.js and friends, backed by robust Spring Boot &amp; API layers your users won't outgrow.</p>
+          <h3 data-i18n="services.c2h">Web &amp; mobile apps</h3>
+          <p data-i18n="services.c2p">Fast, modern interfaces with Next.js and friends, backed by robust Spring Boot &amp; API layers your users won't outgrow.</p>
         </div>
         <div class="card reveal">
           <span class="num-tag">03</span>
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
-          <h3>System integration &amp; APIs</h3>
-          <p>Connecting the tools you already use — payments, databases, third-party services — into one coherent system.</p>
+          <h3 data-i18n="services.c3h">System integration &amp; APIs</h3>
+          <p data-i18n="services.c3p">Connecting the tools you already use — payments, databases, third-party services — into one coherent system.</p>
         </div>
         <div class="card reveal">
           <span class="num-tag">04</span>
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6M7 12H1"/></svg></div>
-          <h3>Technical consulting</h3>
-          <p>A second pair of senior eyes on architecture, performance and product decisions — practical advice, not slideware.</p>
+          <h3 data-i18n="services.c4h">Technical consulting</h3>
+          <p data-i18n="services.c4p">A second pair of senior eyes on architecture, performance and product decisions — practical advice, not slideware.</p>
         </div>
       </div>
     </div>
@@ -319,24 +330,24 @@
   <section class="sec" id="products" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="kicker">Built in-house</span>
-        <h2>Our own products.</h2>
-        <p>We don't just build for others. These are the products we're actively developing under the Code Horse name.</p>
+        <span class="kicker" data-i18n="products.kicker">Built in-house</span>
+        <h2 data-i18n="products.h2">Our own products.</h2>
+        <p data-i18n="products.p">We don't just build for others. These are the products we're actively developing under the Code Horse name.</p>
       </div>
       <div class="products">
         <div class="prod reveal">
           <span class="pnum">/ 01</span>
-          <span class="badge"><span class="d"></span>In development</span>
-          <h3>Swedish Driving License Theory App</h3>
-          <p>A modern study companion for the Swedish körkort theory exam — bilingual question banks, smart practice and an AI study assistant that explains the why, not just the answer.</p>
-          <div class="tags"><span class="tag">Next.js</span><span class="tag">Spring Boot</span><span class="tag">AI assistant</span><span class="tag">Bilingual</span></div>
+          <span class="badge"><span class="d"></span><span data-i18n="prod.dev">In development</span></span>
+          <h3 data-i18n="prod1.h">Swedish Driving License Theory App</h3>
+          <p data-i18n="prod1.p">A modern study companion for the Swedish körkort theory exam — bilingual question banks, smart practice and an AI study assistant that explains the why, not just the answer.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Spring Boot</span><span class="tag" data-i18n="prod1.tag.ai">AI assistant</span><span class="tag" data-i18n="prod1.tag.bi">Bilingual</span></div>
         </div>
         <div class="prod reveal">
           <span class="pnum">/ 02</span>
-          <span class="badge"><span class="d"></span>In development</span>
-          <h3>Restaurant Management System</h3>
-          <p>An all-in-one platform for running a restaurant — orders, menus, staff and finances in one clean dashboard, designed from real day-to-day operating experience.</p>
-          <div class="tags"><span class="tag">Web platform</span><span class="tag">Operations</span><span class="tag">Dashboard</span></div>
+          <span class="badge"><span class="d"></span><span data-i18n="prod.dev">In development</span></span>
+          <h3 data-i18n="prod2.h">Restaurant Management System</h3>
+          <p data-i18n="prod2.p">An all-in-one platform for running a restaurant — orders, menus, staff and finances in one clean dashboard, designed from real day-to-day operating experience.</p>
+          <div class="tags"><span class="tag" data-i18n="prod2.tag.web">Web platform</span><span class="tag" data-i18n="prod2.tag.ops">Operations</span><span class="tag" data-i18n="prod2.tag.dash">Dashboard</span></div>
         </div>
       </div>
     </div>
@@ -347,14 +358,14 @@
     <div class="wrap">
       <div class="about-grid">
         <div class="about-text reveal">
-          <span class="kicker">Who we are</span>
-          <h2>A small studio<br>with skin in the game.</h2>
-          <p>Code Horse AB is a <strong>two-person engineering studio</strong> based in Gothenburg. Small by design — every line of code and every client conversation goes through the people who actually build the thing.</p>
-          <p>Because we ship our own products, we feel the same pressures our clients do. That keeps us honest, pragmatic and genuinely invested in what works.</p>
+          <span class="kicker" data-i18n="about.kicker">Who we are</span>
+          <h2 data-i18n="about.h2">A small studio<br>with skin in the game.</h2>
+          <p data-i18n="about.p1">Code Horse AB is a <strong>two-person engineering studio</strong> based in Gothenburg. Small by design — every line of code and every client conversation goes through the people who actually build the thing.</p>
+          <p data-i18n="about.p2">Because we ship our own products, we feel the same pressures our clients do. That keeps us honest, pragmatic and genuinely invested in what works.</p>
           <div class="feature-list">
-            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Senior engineers on every project — no hand-offs</span></div>
-            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>We build products, so we think like product owners</span></div>
-            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Direct, no-overhead communication from day one</span></div>
+            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="about.f1">Senior engineers on every project — no hand-offs</span></div>
+            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="about.f2">We build products, so we think like product owners</span></div>
+            <div class="fi"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="about.f3">Direct, no-overhead communication from day one</span></div>
           </div>
         </div>
         <div class="about-card reveal">
@@ -365,13 +376,13 @@
             </g>
             <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
           </svg>
-          <div class="loc">Home base</div>
+          <div class="loc" data-i18n="about.loc">Home base</div>
           <div class="city">Göteborg, SE</div>
-          <p class="sub">On the Swedish west coast — building software for clients near and far.</p>
+          <p class="sub" data-i18n="about.sub">On the Swedish west coast — building software for clients near and far.</p>
           <div class="mini">
-            <div class="m"><div class="n">02</div><div class="t">Engineers</div></div>
-            <div class="m"><div class="n">100%</div><div class="t">Hands-on</div></div>
-            <div class="m"><div class="n">2</div><div class="t">Own products</div></div>
+            <div class="m"><div class="n">02</div><div class="t" data-i18n="about.m1">Engineers</div></div>
+            <div class="m"><div class="n">100%</div><div class="t" data-i18n="about.m2">Hands-on</div></div>
+            <div class="m"><div class="n">2</div><div class="t" data-i18n="about.m3">Own products</div></div>
           </div>
         </div>
       </div>
@@ -382,9 +393,9 @@
   <section class="sec" id="team" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="kicker">The people</span>
-        <h2>Two people. Both build.</h2>
-        <p>No account managers, no middle layer — you work directly with the two engineers behind every line of Code Horse.</p>
+        <span class="kicker" data-i18n="team.kicker">The people</span>
+        <h2 data-i18n="team.h2">Two people. Both build.</h2>
+        <p data-i18n="team.p">No account managers, no middle layer — you work directly with the two engineers behind every line of Code Horse.</p>
       </div>
       <div class="team-grid">
 
@@ -396,8 +407,8 @@
           </div>
           <div class="m-info">
             <div class="m-name">Mortaza Ebeid</div>
-            <div class="m-role">Co-founder · Engineer</div>
-            <p class="m-bio">Full-stack engineer focused on backend architecture and product. Leads development of the körkort theory app.</p>
+            <div class="m-role" data-i18n="team.role">Co-founder · Engineer</div>
+            <p class="m-bio" data-i18n="team.bio1">Full-stack engineer focused on backend architecture and product. Leads development of the körkort theory app.</p>
             <div class="m-links">
               <a href="mailto:hello@codehorse.se" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></a>
               <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4 0 4.77 2.65 4.77 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.37-3.9-2.37 0-2.73 1.85-2.73 3.77V24h-4V8z"/></svg></a>
@@ -413,8 +424,8 @@
           </div>
           <div class="m-info">
             <div class="m-name">XiaoBo Chen</div>
-            <div class="m-role">Co-founder · Engineer</div>
-            <p class="m-bio">Engineer with a focus on frontend and product experience. Drives the design and build of the restaurant management system.</p>
+            <div class="m-role" data-i18n="team.role">Co-founder · Engineer</div>
+            <p class="m-bio" data-i18n="team.bio2">Engineer with a focus on frontend and product experience. Drives the design and build of the restaurant management system.</p>
             <div class="m-links">
               <a href="mailto:hello@codehorse.se" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></a>
               <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4 0 4.77 2.65 4.77 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.37-3.9-2.37 0-2.73 1.85-2.73 3.77V24h-4V8z"/></svg></a>
@@ -438,11 +449,11 @@
           </g>
           <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
         </svg>
-        <h2>Let's build<br>something <span class="accent">good.</span></h2>
-        <p>Have a project in mind, or want to know more about our products? We'd love to hear from you.</p>
+        <h2 data-i18n="contact.h2">Let's build<br>something <span class="accent">good.</span></h2>
+        <p data-i18n="contact.p">Have a project in mind, or want to know more about our products? We'd love to hear from you.</p>
         <div class="cbtns">
           <a class="btn btn-primary" href="mailto:hello@codehorse.se">hello@codehorse.se</a>
-          <a class="btn btn-light" href="mailto:hello@codehorse.se">Send a message →</a>
+          <a class="btn btn-light" href="mailto:hello@codehorse.se" data-i18n="contact.btn2">Send a message →</a>
         </div>
       </div>
     </div>
@@ -464,31 +475,31 @@
           </svg>
           <span class="name">Code Horse</span>
         </a>
-        <p class="fcol-desc">An independent software studio in Gothenburg, Sweden — building custom software and our own products.</p>
+        <p class="fcol-desc" data-i18n="footer.desc">An independent software studio in Gothenburg, Sweden — building custom software and our own products.</p>
       </div>
       <div class="foot-links">
         <div class="fc">
-          <h4>Studio</h4>
-          <a href="#services">Services</a>
-          <a href="#products">Products</a>
-          <a href="#team">Team</a>
-          <a href="#about">About</a>
+          <h4 data-i18n="footer.h.studio">Studio</h4>
+          <a href="#services" data-i18n="footer.services">Services</a>
+          <a href="#products" data-i18n="footer.products">Products</a>
+          <a href="#team" data-i18n="footer.team">Team</a>
+          <a href="#about" data-i18n="footer.about">About</a>
         </div>
         <div class="fc">
-          <h4>Products</h4>
-          <a href="#products">Körkort Theory App</a>
-          <a href="#products">Restaurant System</a>
+          <h4 data-i18n="footer.h.products">Products</h4>
+          <a href="#products" data-i18n="footer.korkort">Körkort Theory App</a>
+          <a href="#products" data-i18n="footer.restaurant">Restaurant System</a>
         </div>
         <div class="fc">
-          <h4>Contact</h4>
+          <h4 data-i18n="footer.h.contact">Contact</h4>
           <a href="mailto:hello@codehorse.se">hello@codehorse.se</a>
-          <a href="#">Göteborg, Sweden</a>
+          <a href="#" data-i18n="footer.location">Göteborg, Sweden</a>
         </div>
       </div>
     </div>
     <div class="foot-bottom">
       <span>© <span id="yr"></span> Code Horse AB</span>
-      <span>Made in Göteborg ◆</span>
+      <span data-i18n="footer.made">Made in Göteborg ◆</span>
     </div>
   </div>
 </footer>
@@ -525,6 +536,127 @@
     el.style.transitionDelay = (siblings.indexOf(el) * 0.08) + 's';
     io.observe(el);
   });
+
+  // ---------- language toggle (EN / SV) ----------
+  (function(){
+    const sv = {
+      'nav.services':'Tjänster',
+      'nav.products':'Produkter',
+      'nav.team':'Team',
+      'nav.about':'Om oss',
+      'nav.getintouch':'Kontakta oss',
+
+      'hero.eyebrow':'Oberoende mjukvarustudio · Göteborg',
+      'hero.title':'Vi bygger mjukvara<br>värd att <span class="accent">rida på.</span>',
+      'hero.lede':'Code Horse AB är en liten, fokuserad ingenjörsstudio i Göteborg, Sverige. Vi skapar skräddarsydd mjukvara åt kunder – och utvecklar egna produkter på vägen.',
+      'hero.cta1':'Starta ett projekt →',
+      'hero.cta2':'Se våra produkter',
+      'hero.stat1':'Personer, helt hands-on',
+      'hero.stat2':'Produkter under utveckling',
+      'hero.stat3':'Baserade i Sverige',
+
+      'services.kicker':'Vad vi gör',
+      'services.h2':'IT-tjänster, levererade hela vägen.',
+      'services.p':'Från första skiss till färdig produkt hanterar vi hela kedjan – design, utveckling, integration och förvaltning.',
+      'services.c1h':'Skräddarsydd mjukvaruutveckling',
+      'services.c1p':'Anpassade webb- och backend-system byggda kring din verksamhet – ren arkitektur, underhållbar kod, inga genvägar.',
+      'services.c2h':'Webb- &amp; mobilappar',
+      'services.c2p':'Snabba, moderna gränssnitt med Next.js och liknande, uppbackade av robusta Spring Boot- &amp; API-lager som dina användare inte växer ur.',
+      'services.c3h':'Systemintegration &amp; API:er',
+      'services.c3p':'Vi kopplar samman verktygen du redan använder – betalningar, databaser, tredjepartstjänster – till ett sammanhängande system.',
+      'services.c4h':'Teknisk rådgivning',
+      'services.c4p':'Ett par extra seniora ögon på arkitektur, prestanda och produktbeslut – praktiska råd, inte powerpoints.',
+
+      'products.kicker':'Byggt internt',
+      'products.h2':'Våra egna produkter.',
+      'products.p':'Vi bygger inte bara åt andra. Det här är produkterna vi aktivt utvecklar under namnet Code Horse.',
+      'prod.dev':'Under utveckling',
+      'prod1.h':'App för svensk körkortsteori',
+      'prod1.p':'En modern studiekompis för det svenska körkortsteoriprovet – tvåspråkiga frågebanker, smart övning och en AI-studieassistent som förklarar varför, inte bara svaret.',
+      'prod1.tag.ai':'AI-assistent',
+      'prod1.tag.bi':'Tvåspråkig',
+      'prod2.h':'System för restauranghantering',
+      'prod2.p':'En allt-i-ett-plattform för att driva en restaurang – beställningar, menyer, personal och ekonomi i en tydlig instrumentpanel, formad av verklig daglig drift.',
+      'prod2.tag.web':'Webbplattform',
+      'prod2.tag.ops':'Drift',
+      'prod2.tag.dash':'Instrumentpanel',
+
+      'about.kicker':'Vilka vi är',
+      'about.h2':'En liten studio<br>med eget på spel.',
+      'about.p1':'Code Horse AB är en <strong>ingenjörsstudio med två personer</strong> baserad i Göteborg. Liten med flit – varje kodrad och varje kundsamtal går genom personerna som faktiskt bygger saken.',
+      'about.p2':'Eftersom vi släpper egna produkter känner vi samma press som våra kunder. Det håller oss ärliga, pragmatiska och genuint engagerade i det som fungerar.',
+      'about.f1':'Seniora ingenjörer i varje projekt – inga överlämningar',
+      'about.f2':'Vi bygger produkter, så vi tänker som produktägare',
+      'about.f3':'Direkt kommunikation utan mellanhänder från dag ett',
+      'about.loc':'Hemmabas',
+      'about.sub':'På den svenska västkusten – bygger mjukvara åt kunder nära och fjärran.',
+      'about.m1':'Ingenjörer',
+      'about.m2':'Hands-on',
+      'about.m3':'Egna produkter',
+
+      'team.kicker':'Människorna',
+      'team.h2':'Två personer. Båda bygger.',
+      'team.p':'Inga account managers, inget mellanled – du jobbar direkt med de två ingenjörerna bakom varje rad av Code Horse.',
+      'team.role':'Medgrundare · Ingenjör',
+      'team.bio1':'Fullstack-ingenjör med fokus på backend-arkitektur och produkt. Leder utvecklingen av körkortsteori-appen.',
+      'team.bio2':'Ingenjör med fokus på frontend och produktupplevelse. Driver design och utveckling av restauranghanteringssystemet.',
+
+      'contact.h2':'Låt oss bygga<br>något <span class="accent">bra.</span>',
+      'contact.p':'Har du ett projekt i åtanke eller vill veta mer om våra produkter? Vi hör gärna från dig.',
+      'contact.btn2':'Skicka ett meddelande →',
+
+      'footer.desc':'En oberoende mjukvarustudio i Göteborg, Sverige – bygger skräddarsydd mjukvara och egna produkter.',
+      'footer.h.studio':'Studio',
+      'footer.services':'Tjänster',
+      'footer.products':'Produkter',
+      'footer.team':'Team',
+      'footer.about':'Om oss',
+      'footer.h.products':'Produkter',
+      'footer.korkort':'Körkortsteori-app',
+      'footer.restaurant':'Restaurangsystem',
+      'footer.h.contact':'Kontakt',
+      'footer.location':'Göteborg, Sverige',
+      'footer.made':'Gjord i Göteborg ◆',
+
+      'title':'Code Horse AB — Mjukvarustudio i Göteborg',
+      'meta.description':'Code Horse AB är en oberoende mjukvarustudio i Göteborg, Sverige. Vi bygger skräddarsydd mjukvara och egna produkter.'
+    };
+
+    const nodes = document.querySelectorAll('[data-i18n]');
+    const titleEl = document.querySelector('title');
+    const descEl = document.querySelector('meta[name="description"]');
+
+    // capture the English defaults already present in the markup
+    const en = {};
+    nodes.forEach(n => { en[n.getAttribute('data-i18n')] = n.innerHTML; });
+    en['title'] = titleEl.textContent;
+    en['meta.description'] = descEl.getAttribute('content');
+
+    const btns = document.querySelectorAll('.lang-btn');
+
+    function apply(lang){
+      const dict = lang === 'sv' ? sv : en;
+      nodes.forEach(n => {
+        const v = dict[n.getAttribute('data-i18n')];
+        if(v != null) n.innerHTML = v;
+      });
+      titleEl.textContent = dict['title'];
+      descEl.setAttribute('content', dict['meta.description']);
+      document.documentElement.lang = lang;
+      btns.forEach(b => {
+        const on = b.dataset.lang === lang;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      try{ localStorage.setItem('lang', lang); }catch(e){}
+    }
+
+    btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+
+    let saved = 'en';
+    try{ saved = localStorage.getItem('lang') || 'en'; }catch(e){}
+    apply(saved === 'sv' ? 'sv' : 'en');
+  })();
 </script>
 </body>
 </html>
