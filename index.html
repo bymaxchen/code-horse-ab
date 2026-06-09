@@ -85,10 +85,11 @@
   .menu-toggle span{width:24px;height:2px;background:var(--ink);transition:.3s;border-radius:2px}
 
   /* language toggle */
-  .lang-toggle{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line-2);border-radius:100px;padding:3px;background:rgba(255,255,255,.55)}
-  .lang-btn{font-family:"Fira Code",ui-monospace,"SF Mono",Consolas,monospace;font-size:12.5px;font-weight:500;letter-spacing:.04em;color:var(--muted);background:transparent;border:0;padding:5px 11px;border-radius:100px;cursor:pointer;transition:color .2s, background .2s}
-  .lang-btn:hover{color:var(--ink)}
-  .lang-btn.active{background:var(--blue);color:#fff}
+  .lang-toggle{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line-2);border-radius:100px;padding:3px;background:rgba(255,255,255,.55);cursor:pointer}
+  .lang-opt{font-family:"Fira Code",ui-monospace,"SF Mono",Consolas,monospace;font-size:12.5px;font-weight:500;letter-spacing:.04em;color:var(--muted);padding:5px 11px;border-radius:100px;transition:color .2s, background .2s}
+  .lang-opt.active{background:var(--blue);color:#fff}
+  /* hovering anywhere on the component darkens the language that would be selected */
+  .lang-toggle:hover .lang-opt:not(.active){color:var(--ink)}
 
   /* ---------- HERO ---------- */
   .hero{position:relative;padding:74px 0 96px}
@@ -250,10 +251,10 @@
         <a class="nl" href="#products" data-i18n="nav.products">Products</a>
         <a class="nl" href="#team" data-i18n="nav.team">Team</a>
         <a class="nl" href="#about" data-i18n="nav.about">About</a>
-        <div class="lang-toggle" role="group" aria-label="Language / Språk">
-          <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-          <button type="button" class="lang-btn" data-lang="sv" aria-pressed="false">SV</button>
-        </div>
+        <button type="button" class="lang-toggle" id="langToggle" aria-label="Switch to Swedish">
+          <span class="lang-opt" data-lang="en">EN</span>
+          <span class="lang-opt" data-lang="sv">SV</span>
+        </button>
         <a class="btn btn-primary" href="#contact" data-i18n="nav.getintouch">Get in touch</a>
       </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
@@ -623,9 +624,12 @@
     en['title'] = titleEl.textContent;
     en['meta.description'] = descEl.getAttribute('content');
 
-    const btns = document.querySelectorAll('.lang-btn');
+    const opts = document.querySelectorAll('.lang-opt');
+    const langToggle = document.getElementById('langToggle');
+    let current = 'en';
 
     function apply(lang){
+      current = lang;
       const dict = lang === 'sv' ? sv : en;
       nodes.forEach(n => {
         const v = dict[n.getAttribute('data-i18n')];
@@ -634,15 +638,14 @@
       titleEl.textContent = dict['title'];
       descEl.setAttribute('content', dict['meta.description']);
       document.documentElement.lang = lang;
-      btns.forEach(b => {
-        const on = b.dataset.lang === lang;
-        b.classList.toggle('active', on);
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
+      opts.forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
+      // label announces what a click will switch TO (in the active language)
+      langToggle.setAttribute('aria-label', lang === 'sv' ? 'Byt till engelska' : 'Switch to Swedish');
       try{ localStorage.setItem('lang', lang); }catch(e){}
     }
 
-    btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+    // the whole component is one switch: a click anywhere flips the language
+    langToggle.addEventListener('click', () => apply(current === 'sv' ? 'en' : 'sv'));
 
     let saved = 'en';
     try{ saved = localStorage.getItem('lang') || 'en'; }catch(e){}
