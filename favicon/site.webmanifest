@@ -1,0 +1,19 @@
+{
+  "name": "Code Horse",
+  "short_name": "Code Horse",
+  "icons": [
+    {
+      "src": "codehorse-favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "codehorse-favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#02112c",
+  "background_color": "#1b53f6",
+  "display": "standalone"
+}

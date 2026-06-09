@@ -5,21 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Code Horse AB — Software studio in Göteborg</title>
 <meta name="description" content="Code Horse AB is an independent software studio in Göteborg, Sweden. We build custom software and our own products.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Familjen+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon/codehorse.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/codehorse-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/codehorse-favicon-16x16.png">
+<link rel="apple-touch-icon" href="favicon/codehorse-favicon-180x180.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="#02112c">
 <style>
+  /* self-hosted brand fonts (variable — one file, every weight) */
+  @font-face{font-family:"Bricolage Grotesque";src:url("fonts/BricolageGrotesque-Variable.ttf") format("truetype");font-weight:200 800;font-display:swap}
+  @font-face{font-family:"Inter";src:url("fonts/Inter-Variable.ttf") format("truetype");font-weight:100 900;font-display:swap}
+  @font-face{font-family:"Fira Code";src:url("fonts/FiraCode-Variable.ttf") format("truetype");font-weight:300 700;font-display:swap}
   :root{
-    --ink:#071126;
-    --ink-2:#0d1b3d;
-    --blue:#2F66F3;
-    --blue-deep:#1f4fd6;
+    --ink:#02112c;
+    --ink-2:#0a2150;
+    --blue:#1b53f6;
+    --blue-deep:#1542d4;
     --paper:#F5F7FA;
     --paper-2:#EEF1F6;
     --white:#FFFFFF;
-    --line:rgba(7,17,38,.10);
-    --line-2:rgba(7,17,38,.16);
-    --muted:rgba(7,17,38,.58);
+    --line:rgba(2,17,44,.10);
+    --line-2:rgba(2,17,44,.16);
+    --muted:rgba(2,17,44,.58);
     --muted-light:rgba(255,255,255,.62);
     --r:18px;
     --maxw:1180px;
@@ -27,7 +34,7 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:90px}
   body{
-    font-family:"Familjen Grotesk",sans-serif;
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
     background:var(--paper);
     color:var(--ink);
     line-height:1.6;
@@ -38,24 +45,23 @@
   /* dot-grid + glow atmosphere */
   body::before{
     content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-    background-image:radial-gradient(circle at 1px 1px, rgba(7,17,38,.055) 1px, transparent 0);
+    background-image:radial-gradient(circle at 1px 1px, rgba(2,17,44,.055) 1px, transparent 0);
     background-size:26px 26px;
     mask-image:linear-gradient(to bottom, #000, transparent 70%);
     -webkit-mask-image:linear-gradient(to bottom, #000, transparent 70%);
   }
   body::after{
     content:"";position:fixed;top:-15%;right:-10%;width:55vw;height:55vw;z-index:0;pointer-events:none;
-    background:radial-gradient(circle, rgba(47,102,243,.16), transparent 62%);
+    background:radial-gradient(circle, rgba(27,83,246,.16), transparent 62%);
     filter:blur(10px);
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
   h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;line-height:1.03;letter-spacing:-.025em;font-weight:700}
   a{color:inherit;text-decoration:none}
-  .mono{font-family:"JetBrains Mono",monospace}
+  .mono{font-family:"Fira Code",ui-monospace,"SF Mono",Consolas,monospace}
 
-  /* horse mark */
+  /* brand mark */
   .mark{display:block}
-  .mark g{stroke:currentColor}
 
   /* ---------- NAV ---------- */
   header{position:sticky;top:0;z-index:50;transition:all .3s ease}
@@ -69,9 +75,9 @@
   .navlinks a.nl:hover{color:var(--ink)}
   .navlinks a.nl::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--blue);transition:width .25s}
   .navlinks a.nl:hover::after{width:100%}
-  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Familjen Grotesk";font-weight:600;font-size:15px;padding:11px 20px;border-radius:100px;transition:transform .2s, box-shadow .2s, background .2s;cursor:pointer;border:0}
-  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 22px -8px rgba(47,102,243,.6)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(47,102,243,.7);background:var(--blue-deep)}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Inter",sans-serif;font-weight:600;font-size:15px;padding:11px 20px;border-radius:100px;transition:transform .2s, box-shadow .2s, background .2s;cursor:pointer;border:0}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 22px -8px rgba(27,83,246,.6)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(27,83,246,.7);background:var(--blue-deep)}
   .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
   .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
   .btn-light{background:#fff;color:var(--ink)}
@@ -81,7 +87,7 @@
 
   /* language toggle */
   .lang-toggle{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line-2);border-radius:100px;padding:3px;background:rgba(255,255,255,.55)}
-  .lang-btn{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:500;letter-spacing:.04em;color:var(--muted);background:transparent;border:0;padding:5px 11px;border-radius:100px;cursor:pointer;transition:color .2s, background .2s}
+  .lang-btn{font-family:"Fira Code",ui-monospace,"SF Mono",Consolas,monospace;font-size:12.5px;font-weight:500;letter-spacing:.04em;color:var(--muted);background:transparent;border:0;padding:5px 11px;border-radius:100px;cursor:pointer;transition:color .2s, background .2s}
   .lang-btn:hover{color:var(--ink)}
   .lang-btn.active{background:var(--blue);color:#fff}
 
@@ -89,9 +95,9 @@
   .hero{position:relative;padding:74px 0 96px}
   .hero .ghost-mark{position:absolute;top:-30px;right:-40px;width:min(560px,52vw);color:var(--ink);opacity:.045;z-index:0;pointer-events:none}
   .hero-inner{position:relative;z-index:1;max-width:880px}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-deep);background:rgba(47,102,243,.09);border:1px solid rgba(47,102,243,.18);padding:7px 14px;border-radius:100px;font-weight:500}
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 0 rgba(47,102,243,.5);animation:pulse 2.6s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,102,243,.45)}70%{box-shadow:0 0 0 9px rgba(47,102,243,0)}100%{box-shadow:0 0 0 0 rgba(47,102,243,0)}}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-deep);background:rgba(27,83,246,.09);border:1px solid rgba(27,83,246,.18);padding:7px 14px;border-radius:100px;font-weight:500}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 0 rgba(27,83,246,.5);animation:pulse 2.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(27,83,246,.45)}70%{box-shadow:0 0 0 9px rgba(27,83,246,0)}100%{box-shadow:0 0 0 0 rgba(27,83,246,0)}}
   h1.title{font-size:clamp(44px,7.4vw,90px);margin:26px 0 0;font-weight:800}
   h1.title .accent{color:var(--blue);position:relative}
   .hero p.lede{font-size:clamp(18px,2.2vw,22px);color:var(--muted);max-width:620px;margin:26px 0 0;line-height:1.55}
@@ -104,7 +110,7 @@
   /* section heading */
   .sec{padding:96px 0;position:relative;z-index:1}
   .sec-head{max-width:680px;margin-bottom:52px}
-  .kicker{font-family:"JetBrains Mono";font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);display:flex;align-items:center;gap:10px}
+  .kicker{font-family:"Fira Code",ui-monospace,monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);display:flex;align-items:center;gap:10px}
   .kicker::before{content:"";width:26px;height:1px;background:var(--blue)}
   .sec-head h2{font-size:clamp(32px,4.4vw,52px);margin:18px 0 0}
   .sec-head p{color:var(--muted);font-size:18px;margin-top:18px;max-width:560px}
@@ -112,27 +118,27 @@
   /* services grid */
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:34px;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;position:relative;overflow:hidden}
-  .card:hover{transform:translateY(-5px);box-shadow:0 24px 50px -28px rgba(7,17,38,.28);border-color:var(--line-2)}
+  .card:hover{transform:translateY(-5px);box-shadow:0 24px 50px -28px rgba(2,17,44,.28);border-color:var(--line-2)}
   .card .ic{width:46px;height:46px;border-radius:12px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--ink);margin-bottom:22px;transition:.3s}
   .card:hover .ic{background:var(--blue);color:#fff}
   .card .ic svg{width:23px;height:23px}
   .card h3{font-size:21px;font-weight:600;letter-spacing:-.02em}
   .card p{color:var(--muted);font-size:15.5px;margin-top:10px}
-  .card .num-tag{position:absolute;top:24px;right:28px;font-family:"JetBrains Mono";font-size:13px;color:var(--line-2)}
+  .card .num-tag{position:absolute;top:24px;right:28px;font-family:"Fira Code",ui-monospace,monospace;font-size:13px;color:var(--line-2)}
 
   /* products */
   .products{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .prod{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:38px;display:flex;flex-direction:column;min-height:300px;transition:transform .3s, box-shadow .3s;position:relative;overflow:hidden}
-  .prod::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(47,102,243,.05),transparent 55%);opacity:0;transition:.4s}
-  .prod:hover{transform:translateY(-5px);box-shadow:0 24px 55px -28px rgba(7,17,38,.3)}
+  .prod::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,83,246,.05),transparent 55%);opacity:0;transition:.4s}
+  .prod:hover{transform:translateY(-5px);box-shadow:0 24px 55px -28px rgba(2,17,44,.3)}
   .prod:hover::before{opacity:1}
-  .prod .pnum{font-family:"JetBrains Mono";font-size:14px;color:var(--blue);letter-spacing:.05em}
-  .badge{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono";font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-deep);background:rgba(47,102,243,.1);padding:5px 11px;border-radius:100px;align-self:flex-start;margin-top:18px}
+  .prod .pnum{font-family:"Fira Code",ui-monospace,monospace;font-size:14px;color:var(--blue);letter-spacing:.05em}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-family:"Fira Code",ui-monospace,monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-deep);background:rgba(27,83,246,.1);padding:5px 11px;border-radius:100px;align-self:flex-start;margin-top:18px}
   .badge .d{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2.6s infinite}
   .prod h3{font-size:27px;font-weight:700;margin-top:22px}
   .prod p{color:var(--muted);font-size:16px;margin-top:14px;flex-grow:1}
   .prod .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
-  .tag{font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:4px 10px;font-family:"JetBrains Mono"}
+  .tag{font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:4px 10px;font-family:"Fira Code",ui-monospace,monospace}
 
   /* about */
   .about{position:relative;z-index:1}
@@ -147,7 +153,7 @@
   .feature-list .fi span{font-size:16px;font-weight:500}
   .about-card{background:var(--ink);border-radius:24px;padding:46px;color:#fff;position:relative;overflow:hidden}
   .about-card .bigmark{position:absolute;right:-50px;bottom:-50px;width:280px;color:#fff;opacity:.07}
-  .about-card .loc{font-family:"JetBrains Mono";font-size:13px;color:var(--muted-light);letter-spacing:.1em;text-transform:uppercase}
+  .about-card .loc{font-family:"Fira Code",ui-monospace,monospace;font-size:13px;color:var(--muted-light);letter-spacing:.1em;text-transform:uppercase}
   .about-card .city{font-family:"Bricolage Grotesque";font-size:42px;font-weight:700;margin-top:10px;letter-spacing:-.03em}
   .about-card .sub{color:var(--muted-light);margin-top:14px;font-size:15.5px;max-width:300px;position:relative}
   .about-card .mini{display:flex;gap:40px;margin-top:40px;position:relative}
@@ -156,7 +162,7 @@
 
   /* contact band */
   .contact{background:var(--ink);border-radius:30px;padding:clamp(48px,7vw,90px);text-align:center;position:relative;overflow:hidden;color:#fff;margin-bottom:40px}
-  .contact .glow{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:70%;height:120%;background:radial-gradient(circle,rgba(47,102,243,.35),transparent 60%);pointer-events:none}
+  .contact .glow{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:70%;height:120%;background:radial-gradient(circle,rgba(27,83,246,.35),transparent 60%);pointer-events:none}
   .contact .mark{width:54px;height:54px;color:#fff;margin:0 auto 26px;position:relative}
   .contact h2{font-size:clamp(32px,5vw,58px);position:relative}
   .contact h2 .accent{color:var(--blue)}
@@ -169,18 +175,18 @@
   .foot .brand .name{font-size:18px}
   .foot .fcol-desc{max-width:280px;color:var(--muted);font-size:14.5px;margin-top:16px}
   .foot-links{display:flex;gap:60px;flex-wrap:wrap}
-  .foot-links .fc h4{font-family:"JetBrains Mono";font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:500;margin-bottom:14px}
+  .foot-links .fc h4{font-family:"Fira Code",ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:500;margin-bottom:14px}
   .foot-links .fc a{display:block;font-size:15px;color:var(--ink);margin-bottom:9px;transition:color .2s}
   .foot-links .fc a:hover{color:var(--blue)}
   .foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px}
-  .foot-bottom span{font-size:13.5px;color:var(--muted);font-family:"JetBrains Mono"}
+  .foot-bottom span{font-size:13.5px;color:var(--muted);font-family:"Fira Code",ui-monospace,monospace}
 
   /* team */
   .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:940px;margin:0 auto}
   .member{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s, box-shadow .35s, border-color .35s}
-  .member:hover{transform:translateY(-6px);box-shadow:0 32px 60px -30px rgba(7,17,38,.32);border-color:var(--line-2)}
+  .member:hover{transform:translateY(-6px);box-shadow:0 32px 60px -30px rgba(2,17,44,.32);border-color:var(--line-2)}
   .portrait{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(155deg,var(--ink),var(--ink-2));display:flex;align-items:center;justify-content:center}
-  .portrait::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(7,17,38,.45),transparent 42%);opacity:0;transition:opacity .4s}
+  .portrait::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(2,17,44,.45),transparent 42%);opacity:0;transition:opacity .4s}
   .member:hover .portrait::before{opacity:1}
   .portrait::after{content:"";position:absolute;inset:0;z-index:3;box-shadow:inset 0 0 0 0 var(--blue);transition:box-shadow .35s}
   .member:hover .portrait::after{box-shadow:inset 0 0 0 3px var(--blue)}
@@ -190,7 +196,7 @@
   .portrait .initials .ac{color:var(--blue)}
   .m-info{padding:28px 30px 32px;flex:1;display:flex;flex-direction:column}
   .m-info .m-name{font-family:"Bricolage Grotesque";font-size:26px;font-weight:700;letter-spacing:-.02em}
-  .m-info .m-role{font-family:"JetBrains Mono";font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-deep);margin-top:7px}
+  .m-info .m-role{font-family:"Fira Code",ui-monospace,monospace;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-deep);margin-top:7px}
   .m-info .m-bio{color:var(--muted);font-size:15.5px;margin-top:14px;line-height:1.62;flex:1 0 auto}
   .m-info .m-links{display:flex;gap:12px;margin-top:20px}
   .m-info .m-links a{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.25s}
@@ -234,12 +240,9 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="#top" aria-label="Code Horse home">
-        <svg class="mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
-            <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
-          </g>
-          <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+        <svg class="mark" viewBox="40 39 432 433" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M70.746 469.977c-30.927-7.805-41.093-46.009-18.242-68.553 27.107-26.744 72.627-6.064 70.258 31.918-1.559 24.989-27.042 42.937-52.016 36.635z" fill="#1b53f6"/>
+          <path d="M339.336 469.968c-10.96.183-15.333-7.969-15.355-17.866-.066-28.714-5.87-43.286-34.135-85.602-19.576-27.025-33.355-51.264-41.73-83-6.799-25.662-3.387-39.5 9.739-39.5 5.81 0 8.069 1.528 13.024 8.808 12.04 17.69 29.36 26.668 56.355 29.214 19.826 1.87 50.87 18.084 68.434 37.782 9.957 11.167 31.248 3.121 39.959-15.304 7.943-16.799 8.064-22.696.681-33.032l-98.334-136.322C317.914 107.389 317 105.993 317 103.104c0-3.18.354-3.668 14.735-20.351 10.961-12.714 10.649-11.728 3.515-11.112C183.678 84.737 91.846 176.269 97.008 319.8c.887 24.671 4.5 40.74-15.503 41.031-8.113.118-11.239-3.325-14.36-8.018-3.802-5.716-2.006-64.471.352-83.428C82.823 146.18 183.25 55.953 321.5 42.1c75.164-7.532 81.612-1.044 45.063 45.346-14.403 18.281-13.497 16.163-9.298 21.728 11.604 15.379 45.769 63.329 52.454 72.447 65.049 88.722 61.802 83.949 61.707 101.379-.317 57.781-60.634 90.004-98.194 58-11.8-10.055-23.31-25.731-53.647-29.47-25.936-3.197-28.253-7.53-31.213-7.53-1.633 0 11.202 20.783 28.718 46.5 24.863 36.506 31.217 43.228 34.219 64 7.004 48.464 2.044 55.234-11.973 55.468z" fill="currentColor"/>
         </svg>
         <span class="name">Code Horse</span>
       </a>
@@ -266,11 +269,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <svg class="ghost-mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
-          <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
-        </g>
+      <svg class="ghost-mark" viewBox="40 39 432 433" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M70.746 469.977c-30.927-7.805-41.093-46.009-18.242-68.553 27.107-26.744 72.627-6.064 70.258 31.918-1.559 24.989-27.042 42.937-52.016 36.635z" fill="#1b53f6"/>
+        <path d="M339.336 469.968c-10.96.183-15.333-7.969-15.355-17.866-.066-28.714-5.87-43.286-34.135-85.602-19.576-27.025-33.355-51.264-41.73-83-6.799-25.662-3.387-39.5 9.739-39.5 5.81 0 8.069 1.528 13.024 8.808 12.04 17.69 29.36 26.668 56.355 29.214 19.826 1.87 50.87 18.084 68.434 37.782 9.957 11.167 31.248 3.121 39.959-15.304 7.943-16.799 8.064-22.696.681-33.032l-98.334-136.322C317.914 107.389 317 105.993 317 103.104c0-3.18.354-3.668 14.735-20.351 10.961-12.714 10.649-11.728 3.515-11.112C183.678 84.737 91.846 176.269 97.008 319.8c.887 24.671 4.5 40.74-15.503 41.031-8.113.118-11.239-3.325-14.36-8.018-3.802-5.716-2.006-64.471.352-83.428C82.823 146.18 183.25 55.953 321.5 42.1c75.164-7.532 81.612-1.044 45.063 45.346-14.403 18.281-13.497 16.163-9.298 21.728 11.604 15.379 45.769 63.329 52.454 72.447 65.049 88.722 61.802 83.949 61.707 101.379-.317 57.781-60.634 90.004-98.194 58-11.8-10.055-23.31-25.731-53.647-29.47-25.936-3.197-28.253-7.53-31.213-7.53-1.633 0 11.202 20.783 28.718 46.5 24.863 36.506 31.217 43.228 34.219 64 7.004 48.464 2.044 55.234-11.973 55.468z" fill="currentColor"/>
       </svg>
       <div class="hero-inner">
         <span class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Independent software studio · Göteborg</span></span>
@@ -369,12 +370,9 @@
           </div>
         </div>
         <div class="about-card reveal">
-          <svg class="bigmark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
-              <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
-            </g>
-            <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+          <svg class="bigmark" viewBox="40 39 432 433" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M70.746 469.977c-30.927-7.805-41.093-46.009-18.242-68.553 27.107-26.744 72.627-6.064 70.258 31.918-1.559 24.989-27.042 42.937-52.016 36.635z" fill="#1b53f6"/>
+            <path d="M339.336 469.968c-10.96.183-15.333-7.969-15.355-17.866-.066-28.714-5.87-43.286-34.135-85.602-19.576-27.025-33.355-51.264-41.73-83-6.799-25.662-3.387-39.5 9.739-39.5 5.81 0 8.069 1.528 13.024 8.808 12.04 17.69 29.36 26.668 56.355 29.214 19.826 1.87 50.87 18.084 68.434 37.782 9.957 11.167 31.248 3.121 39.959-15.304 7.943-16.799 8.064-22.696.681-33.032l-98.334-136.322C317.914 107.389 317 105.993 317 103.104c0-3.18.354-3.668 14.735-20.351 10.961-12.714 10.649-11.728 3.515-11.112C183.678 84.737 91.846 176.269 97.008 319.8c.887 24.671 4.5 40.74-15.503 41.031-8.113.118-11.239-3.325-14.36-8.018-3.802-5.716-2.006-64.471.352-83.428C82.823 146.18 183.25 55.953 321.5 42.1c75.164-7.532 81.612-1.044 45.063 45.346-14.403 18.281-13.497 16.163-9.298 21.728 11.604 15.379 45.769 63.329 52.454 72.447 65.049 88.722 61.802 83.949 61.707 101.379-.317 57.781-60.634 90.004-98.194 58-11.8-10.055-23.31-25.731-53.647-29.47-25.936-3.197-28.253-7.53-31.213-7.53-1.633 0 11.202 20.783 28.718 46.5 24.863 36.506 31.217 43.228 34.219 64 7.004 48.464 2.044 55.234-11.973 55.468z" fill="currentColor"/>
           </svg>
           <div class="loc" data-i18n="about.loc">Home base</div>
           <div class="city">Göteborg, SE</div>
@@ -442,12 +440,9 @@
     <div class="wrap">
       <div class="contact reveal">
         <div class="glow"></div>
-        <svg class="mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
-            <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
-          </g>
-          <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+        <svg class="mark" viewBox="40 39 432 433" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M70.746 469.977c-30.927-7.805-41.093-46.009-18.242-68.553 27.107-26.744 72.627-6.064 70.258 31.918-1.559 24.989-27.042 42.937-52.016 36.635z" fill="#1b53f6"/>
+          <path d="M339.336 469.968c-10.96.183-15.333-7.969-15.355-17.866-.066-28.714-5.87-43.286-34.135-85.602-19.576-27.025-33.355-51.264-41.73-83-6.799-25.662-3.387-39.5 9.739-39.5 5.81 0 8.069 1.528 13.024 8.808 12.04 17.69 29.36 26.668 56.355 29.214 19.826 1.87 50.87 18.084 68.434 37.782 9.957 11.167 31.248 3.121 39.959-15.304 7.943-16.799 8.064-22.696.681-33.032l-98.334-136.322C317.914 107.389 317 105.993 317 103.104c0-3.18.354-3.668 14.735-20.351 10.961-12.714 10.649-11.728 3.515-11.112C183.678 84.737 91.846 176.269 97.008 319.8c.887 24.671 4.5 40.74-15.503 41.031-8.113.118-11.239-3.325-14.36-8.018-3.802-5.716-2.006-64.471.352-83.428C82.823 146.18 183.25 55.953 321.5 42.1c75.164-7.532 81.612-1.044 45.063 45.346-14.403 18.281-13.497 16.163-9.298 21.728 11.604 15.379 45.769 63.329 52.454 72.447 65.049 88.722 61.802 83.949 61.707 101.379-.317 57.781-60.634 90.004-98.194 58-11.8-10.055-23.31-25.731-53.647-29.47-25.936-3.197-28.253-7.53-31.213-7.53-1.633 0 11.202 20.783 28.718 46.5 24.863 36.506 31.217 43.228 34.219 64 7.004 48.464 2.044 55.234-11.973 55.468z" fill="currentColor"/>
         </svg>
         <h2 data-i18n="contact.h2">Let's build<br>something <span class="accent">good.</span></h2>
         <p data-i18n="contact.p">Have a project in mind, or want to know more about our products? We'd love to hear from you.</p>
@@ -466,12 +461,9 @@
     <div class="foot">
       <div>
         <a class="brand" href="#top">
-          <svg class="mark" viewBox="85 72 126 126" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M 101 160 L 101 139 C 101 111 127 83 158 82 L 179 82 L 163 104 L 199 141 C 204 146 204 152 199 156 L 192 161 C 187 164 179 161 174 156 C 168 151 162 150 157 150"/>
-              <path d="M 145 137 C 147 154 156 161 163 164 C 170 168 171 180 171 190"/>
-            </g>
-            <circle cx="102" cy="183" r="10.2" fill="#2F66F3"/>
+          <svg class="mark" viewBox="40 39 432 433" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M70.746 469.977c-30.927-7.805-41.093-46.009-18.242-68.553 27.107-26.744 72.627-6.064 70.258 31.918-1.559 24.989-27.042 42.937-52.016 36.635z" fill="#1b53f6"/>
+            <path d="M339.336 469.968c-10.96.183-15.333-7.969-15.355-17.866-.066-28.714-5.87-43.286-34.135-85.602-19.576-27.025-33.355-51.264-41.73-83-6.799-25.662-3.387-39.5 9.739-39.5 5.81 0 8.069 1.528 13.024 8.808 12.04 17.69 29.36 26.668 56.355 29.214 19.826 1.87 50.87 18.084 68.434 37.782 9.957 11.167 31.248 3.121 39.959-15.304 7.943-16.799 8.064-22.696.681-33.032l-98.334-136.322C317.914 107.389 317 105.993 317 103.104c0-3.18.354-3.668 14.735-20.351 10.961-12.714 10.649-11.728 3.515-11.112C183.678 84.737 91.846 176.269 97.008 319.8c.887 24.671 4.5 40.74-15.503 41.031-8.113.118-11.239-3.325-14.36-8.018-3.802-5.716-2.006-64.471.352-83.428C82.823 146.18 183.25 55.953 321.5 42.1c75.164-7.532 81.612-1.044 45.063 45.346-14.403 18.281-13.497 16.163-9.298 21.728 11.604 15.379 45.769 63.329 52.454 72.447 65.049 88.722 61.802 83.949 61.707 101.379-.317 57.781-60.634 90.004-98.194 58-11.8-10.055-23.31-25.731-53.647-29.47-25.936-3.197-28.253-7.53-31.213-7.53-1.633 0 11.202 20.783 28.718 46.5 24.863 36.506 31.217 43.228 34.219 64 7.004 48.464 2.044 55.234-11.973 55.468z" fill="currentColor"/>
           </svg>
           <span class="name">Code Horse</span>
         </a>
